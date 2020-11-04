@@ -155,7 +155,11 @@ const ScreenObtainer = {
     obtainScreenFromGetDisplayMedia(options, callback, errorCallback) {
         logger.info('Using getDisplayMedia for screen sharing');
 
-        let getDisplayMedia = this.getDisplayMedia;
+        let getDisplayMedia = this.getDisplayMedia({
+            video: true,
+            audio: true,
+            cursor: 'always'
+        });
 
         // if (navigator.getDisplayMedia) {
         //     getDisplayMedia = navigator.getDisplayMedia.bind(navigator);
@@ -163,12 +167,9 @@ const ScreenObtainer = {
         //     // eslint-disable-next-line max-len
         //     getDisplayMedia = navigator.mediaDevices.getDisplayMedia.bind(navigator.mediaDevices);
         // }
+        console.debug("-.-.-.-.-.-.-.->", getDisplayMedia)
 
-        getDisplayMedia({
-            video: true,
-            audio: true,
-            cursor: 'always'
-        })
+        getDisplayMedia
             .then(stream => {
                 console.debug(">>>>><<<<<<>>>>><<<", stream)
                 let applyConstraintsPromise;
