@@ -221,7 +221,6 @@ export default _mergeNamespaceAndModule({
 
             Statistics.sendLog(JSON.stringify(logObject));
         }
-        console.debug("______________", options)
         return RTC.init(options);
     },
 

@@ -155,6 +155,7 @@ const ScreenObtainer = {
         logger.info('Using getDisplayMedia for screen sharing');
 
         let getDisplayMedia = options.getDisplayMedia;
+        console.debug("______________", getDisplayMedia)
 
         // if (navigator.getDisplayMedia) {
         //     getDisplayMedia = navigator.getDisplayMedia.bind(navigator);
