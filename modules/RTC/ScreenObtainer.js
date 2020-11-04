@@ -46,10 +46,6 @@ const ScreenObtainer = {
      * @private
      */
     _createObtainStreamMethod() {
-        console.debug("-~-~-~-~-~>browser.isNWJS()", browser.isNWJS())
-        console.debug("-~-~-~-~-~>browser.isElectron()", browser.isElectron())
-        console.debug("-~-~-~-~-~>browser.supportsGetDisplayMedia()", browser.supportsGetDisplayMedia())
-
         if (browser.isNWJS()) {
             return (_, onSuccess, onFailure) => {
                 window.JitsiMeetNW.obtainDesktopStream(
@@ -90,9 +86,11 @@ const ScreenObtainer = {
         } else if (browser.supportsGetDisplayMedia()) {
             return this.obtainScreenFromGetDisplayMedia;
         }
-        logger.log('Screen sharing not supported on ', browser.getName());
+        return this.obtainScreenFromGetDisplayMedia;
 
-        return null;
+        // logger.log('Screen sharing not supported on ', browser.getName());
+
+        // return null;
     },
 
     /**
@@ -156,14 +154,14 @@ const ScreenObtainer = {
     obtainScreenFromGetDisplayMedia(options, callback, errorCallback) {
         logger.info('Using getDisplayMedia for screen sharing');
 
-        let getDisplayMedia;
+        let getDisplayMedia = options.getDisplayMedia;
 
-        if (navigator.getDisplayMedia) {
-            getDisplayMedia = navigator.getDisplayMedia.bind(navigator);
-        } else {
-            // eslint-disable-next-line max-len
-            getDisplayMedia = navigator.mediaDevices.getDisplayMedia.bind(navigator.mediaDevices);
-        }
+        // if (navigator.getDisplayMedia) {
+        //     getDisplayMedia = navigator.getDisplayMedia.bind(navigator);
+        // } else {
+        //     // eslint-disable-next-line max-len
+        //     getDisplayMedia = navigator.mediaDevices.getDisplayMedia.bind(navigator.mediaDevices);
+        // }
 
         getDisplayMedia({
             video: true,
