@@ -265,6 +265,7 @@ export default class RTC extends Listenable {
             : RTCUtils.obtainAudioAndVideoPermissions(options);
 
         return obtainMediaPromise.then(tracksInfo => {
+            console.debug("1111111111111", tracksInfo)
             if (usesNewGumFlow) {
                 return _newCreateLocalTracks(tracksInfo);
             }

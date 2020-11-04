@@ -353,6 +353,7 @@ export default _mergeNamespaceAndModule({
 
         return RTC.obtainAudioAndVideoPermissions(options)
             .then(tracks => {
+                console.debug("22222222222222", tracks)
                 promiseFulfilled = true;
 
                 window.connectionTimes['obtainPermissions.end']
