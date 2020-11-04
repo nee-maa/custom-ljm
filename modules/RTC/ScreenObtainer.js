@@ -167,13 +167,11 @@ const ScreenObtainer = {
         //     // eslint-disable-next-line max-len
         //     getDisplayMedia = navigator.mediaDevices.getDisplayMedia.bind(navigator.mediaDevices);
         // }
-        console.debug("-.-.-.-.-.-.-.->", getDisplayMedia)
 
         getDisplayMedia
             .then(stream => {
-                console.debug(">>>>><<<<<<>>>>><<<", stream)
                 let applyConstraintsPromise;
-
+                console.debug("-><->->->-<", stream.getTracks(), stream.getTracks().length, stream.getVideoTracks()[0])
                 if (stream
                     && stream.getTracks()
                     && stream.getTracks().length > 0) {
