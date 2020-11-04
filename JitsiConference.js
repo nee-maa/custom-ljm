@@ -1123,8 +1123,9 @@ JitsiConference.prototype._doReplaceTrack = function(oldTrack, newTrack) {
  * @param {JitsiLocalTrack} newTrack the new track being created
  */
 JitsiConference.prototype._setupNewTrack = function(newTrack) {
-    if (newTrack.isAudioTrack() || (newTrack.isVideoTrack()
-            && newTrack.videoType !== VideoType.DESKTOP)) {
+    console.debug("shiiiiiiiiiiiiiiiiiiit", newTrack.videoType)
+    if (newTrack.videoType === VideoType.DESKTOP || (newTrack.isAudioTrack() || (newTrack.isVideoTrack()
+            && newTrack.videoType !== VideoType.DESKTOP))) {
         // Report active device to statistics
         const devices = RTC.getCurrentlyAvailableMediaDevices();
         const device
@@ -1138,7 +1139,7 @@ JitsiConference.prototype._setupNewTrack = function(newTrack) {
                 RTC.getEventDataForActiveDevice(device));
         }
     }
-    if (newTrack.isVideoTrack()) {
+    if (newTrack.videoType !== VideoType.DESKTOP && newTrack.isVideoTrack()) {
         this.removeCommand('videoType');
         this.sendCommand('videoType', {
             value: newTrack.videoType,
@@ -1150,12 +1151,13 @@ JitsiConference.prototype._setupNewTrack = function(newTrack) {
     this.rtc.addLocalTrack(newTrack);
 
     // ensure that we're sharing proper "is muted" state
-    if (newTrack.isAudioTrack()) {
-        this.room.setAudioMute(newTrack.isMuted());
-    } else {
-        this.room.setVideoMute(newTrack.isMuted());
+    if(newTrack.videoType !== VideoType.DESKTOP){
+        if (newTrack.isAudioTrack()) {
+            this.room.setAudioMute(newTrack.isMuted());
+        } else {
+            this.room.setVideoMute(newTrack.isMuted());
+        }
     }
-
     newTrack.muteHandler = this._fireMuteChangeEvent.bind(this, newTrack);
     newTrack.audioLevelHandler = this._fireAudioLevelChangeEvent.bind(this);
     newTrack.addEventListener(
