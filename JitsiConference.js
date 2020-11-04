@@ -1099,6 +1099,7 @@ JitsiConference.prototype.replaceTrack = function(oldTrack, newTrack) {
  * @private
  */
 JitsiConference.prototype._doReplaceTrack = function(oldTrack, newTrack) {
+    console.debug("++++++++++++++++", newTrack.type, newTrack.videoType)
     const replaceTrackPromises = [];
 
     if (this.jvbJingleSession) {
@@ -1114,7 +1115,7 @@ JitsiConference.prototype._doReplaceTrack = function(oldTrack, newTrack) {
     } else {
         logger.info('_doReplaceTrack - no P2P JingleSession');
     }
-
+    console.debug("HaHaHaHaHaHaHaHaHaHa")
     return Promise.all(replaceTrackPromises);
 };
 
