@@ -1123,7 +1123,7 @@ JitsiConference.prototype._doReplaceTrack = function(oldTrack, newTrack) {
  * @param {JitsiLocalTrack} newTrack the new track being created
  */
 JitsiConference.prototype._setupNewTrack = function(newTrack) {
-    console.debug("shiiiiiiiiiiiiiiiiiiit", newTrack.videoType)
+    console.debug("shiiiiiiiiiiiiiiiiiiit", newTrack.type, newTrack.videoType)
     if (newTrack.videoType === VideoType.DESKTOP || (newTrack.isAudioTrack() || (newTrack.isVideoTrack()
             && newTrack.videoType !== VideoType.DESKTOP))) {
         // Report active device to statistics
