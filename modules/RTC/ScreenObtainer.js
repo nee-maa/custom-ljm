@@ -171,7 +171,6 @@ const ScreenObtainer = {
         getDisplayMedia
             .then(stream => {
                 let applyConstraintsPromise;
-                console.debug("-><->->->-<", stream.getTracks(), stream.getTracks().length, stream.getVideoTracks()[0])
                 if (stream
                     && stream.getTracks()
                     && stream.getTracks().length > 0) {
@@ -181,6 +180,7 @@ const ScreenObtainer = {
                     if (videoTrack) {
                         applyConstraintsPromise = videoTrack.applyConstraints(options.trackOptions);
                     }
+                    console.debug("-><->->->-<", applyConstraintsPromise)
                 } else {
                     applyConstraintsPromise = Promise.resolve();
                 }
