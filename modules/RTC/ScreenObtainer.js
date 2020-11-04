@@ -175,13 +175,14 @@ const ScreenObtainer = {
                     && stream.getTracks()
                     && stream.getTracks().length > 0) {
                     const videoTrack = stream.getVideoTracks()[0];
+                    console.debug("~~~~~~~>", options.trackOptions)
+                    console.debug("=======>", Object.keys(videoTrack))
 
                     // Apply video track constraint.
-                    if (videoTrack) {
-                        applyConstraintsPromise = videoTrack.applyConstraints(options.trackOptions);
-                    }
-                    console.debug("-><->->->-<", applyConstraintsPromise)
-                } else {
+                    // if (videoTrack) {
+                    //     applyConstraintsPromise = videoTrack.applyConstraints(options.trackOptions);
+                    // }
+                // } else {
                     applyConstraintsPromise = Promise.resolve();
                 }
 
