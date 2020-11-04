@@ -46,6 +46,10 @@ const ScreenObtainer = {
      * @private
      */
     _createObtainStreamMethod() {
+        console.debug("-~-~-~-~-~>browser.isNWJS()", browser.isNWJS())
+        console.debug("-~-~-~-~-~>browser.isElectron()", browser.isElectron())
+        console.debug("-~-~-~-~-~>browser.supportsGetDisplayMedia()", browser.supportsGetDisplayMedia())
+
         if (browser.isNWJS()) {
             return (_, onSuccess, onFailure) => {
                 window.JitsiMeetNW.obtainDesktopStream(
