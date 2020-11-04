@@ -332,7 +332,9 @@ export default _mergeNamespaceAndModule({
      */
     createLocalTracks(
             options = {}, firePermissionPromptIsShownEvent, originalOptions) {
-
+        
+        console.debug("^^^^^^^^^^^^^^^", options, firePermissionPromptIsShownEvent)
+        firePermissionPromptIsShownEvent = options.devices[0] === 'desktop' ? true : firePermissionPromptIsShownEvent 
         let promiseFulfilled = false;
 
         if (firePermissionPromptIsShownEvent === true) {
