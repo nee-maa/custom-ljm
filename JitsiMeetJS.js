@@ -332,6 +332,10 @@ export default _mergeNamespaceAndModule({
      */
     createLocalTracks(
             options = {}, firePermissionPromptIsShownEvent, originalOptions) {
+
+        console.debug(">>>>>>>>>>>>>>", options)
+        console.debug("@@@@@@@@@@@@@@", originalOptions)
+
         let promiseFulfilled = false;
 
         if (firePermissionPromptIsShownEvent === true) {
