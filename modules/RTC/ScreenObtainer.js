@@ -29,6 +29,7 @@ const ScreenObtainer = {
      */
     init(options = {}, gum) {
         this.options = options;
+        this.getDisplayMedia = this.options.getDisplayMedia;
         gumFunction = gum;
 
         this.obtainStream = this._createObtainStreamMethod();
@@ -154,8 +155,8 @@ const ScreenObtainer = {
     obtainScreenFromGetDisplayMedia(options, callback, errorCallback) {
         logger.info('Using getDisplayMedia for screen sharing');
 
-        let getDisplayMedia = options.getDisplayMedia;
-        console.debug("______________", options)
+        let getDisplayMedia = this.getDisplayMedia;
+        console.debug("______________", getDisplayMedia)
 
         // if (navigator.getDisplayMedia) {
         //     getDisplayMedia = navigator.getDisplayMedia.bind(navigator);
