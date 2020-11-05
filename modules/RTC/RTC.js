@@ -59,7 +59,7 @@ function createLocalTracks(tracksInfo, options) {
 
         newTracks.push(localTrack);
     });
-
+    console.debug(">>> local tracks object", newTracks)
     return newTracks;
 }
 
@@ -263,11 +263,8 @@ export default class RTC extends Listenable {
         const obtainMediaPromise = usesNewGumFlow
             ? RTCUtils.newObtainAudioAndVideoPermissions(options)
             : RTCUtils.obtainAudioAndVideoPermissions(options);
-
-        console.debug("00000000000000000000", usesNewGumFlow)
-        
+      
         return obtainMediaPromise.then(tracksInfo => {
-            console.debug("1111111111111", tracksInfo)
             if (usesNewGumFlow) {
                 return _newCreateLocalTracks(tracksInfo);
             }

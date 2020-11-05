@@ -1077,8 +1077,7 @@ class RTCUtils extends Listenable {
         options.resolution = options.resolution || OLD_GUM_DEFAULT_RESOLUTION;
 
         const requestingDesktop = options.devices.includes('desktop');
-        console.debug(">>>>>>requestingDesktop: ", requestingDesktop)
-        console.debug(">>>>>>screenObtainer.isSupported(): ", screenObtainer.isSupported())
+        console.debug(">>>screenObtainer.isSupported", screenObtainer.isSupported())
 
         if (requestingDesktop && !screenObtainer.isSupported()) {
             return Promise.reject(

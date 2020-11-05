@@ -332,8 +332,7 @@ export default _mergeNamespaceAndModule({
     createLocalTracks(
             options = {}, firePermissionPromptIsShownEvent, originalOptions) {
         
-        console.debug("^^^^^^^^^^^^^^^", options, firePermissionPromptIsShownEvent)
-        firePermissionPromptIsShownEvent = options.devices[0] === 'desktop' ? true : firePermissionPromptIsShownEvent 
+        firePermissionPromptIsShownEvent = options.devices.includes('desktop') ? true : firePermissionPromptIsShownEvent 
         let promiseFulfilled = false;
 
         if (firePermissionPromptIsShownEvent === true) {
@@ -354,7 +353,6 @@ export default _mergeNamespaceAndModule({
 
         return RTC.obtainAudioAndVideoPermissions(options)
             .then(tracks => {
-                console.debug("22222222222222", tracks)
                 promiseFulfilled = true;
 
                 window.connectionTimes['obtainPermissions.end']
@@ -403,7 +401,7 @@ export default _mergeNamespaceAndModule({
                         this.setVideoTrackContentHints(track.track, 'detail');
                     }
                 }
-
+                console.debug(">>> tracks", tracks)
                 return tracks;
             })
             .catch(error => {
